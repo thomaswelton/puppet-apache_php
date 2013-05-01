@@ -30,3 +30,5 @@ apache_php::vhost { "example":
 }
 
 ```
+
+See https://gist.github.com/webflo/5497063 for more examples.
