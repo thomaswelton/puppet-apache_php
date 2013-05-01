@@ -1,0 +1,26 @@
+# Ensure we're listening on the port
+# Listen <%= @port %>
+
+# Use name-based virtual hosting.
+#
+# NameVirtualHost *:<%= @port %>
+
+<VirtualHost *:<%= @port %>>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "<%= @vhost_docroot %>"
+    ServerName <%= @hostname %>
+    ErrorLog "<%= scope.lookupvar "apache::config::logdir" %>/<%= @name %>-error_log"
+    CustomLog "<%= scope.lookupvar "apache::config::logdir" %>/<%= @name %>-access_log" common
+
+    <IfModule mod_fastcgi.c>
+      AddHandler php5-fcgi .php
+      Action php5-fcgi /php5-fcgi
+      Alias /php5-fcgi /opt/boxen/phpenv/versions/<%= scope.lookupvar "php_version" %>/sbin/php-fpm
+    </IfModule>
+    
+    <Directory <%= @vhost_docroot %>>
+      AllowOverride ALL
+      Order Allow,Deny
+      Allow from all
+    </Directory>
+</VirtualHost>

@@ -1,0 +1,10 @@
+<IfModule mod_fastcgi.c>
+  FastCgiExternalServer /opt/boxen/phpenv/versions/<%= scope.lookupvar "php_version" %>/sbin/php-fpm -socket /opt/boxen/data/project-sockets/<%= scope.lookupvar "php_version" %>
+
+  <Directory /opt/boxen/phpenv/versions/<%= scope.lookupvar "php_version" %>/sbin>
+    Options ExecCGI FollowSymlinks
+    SetHandler fastcgi-script
+    Order allow,deny
+    Allow from all
+  </Directory>
+</IfModule>
