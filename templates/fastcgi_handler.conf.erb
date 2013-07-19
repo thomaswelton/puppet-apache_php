@@ -1,5 +1,5 @@
 <IfModule mod_fastcgi.c>
-  FastCgiExternalServer /opt/boxen/phpenv/versions/<%= scope.lookupvar "php_version" %>/sbin/php-fpm -socket /opt/boxen/data/project-sockets/<%= scope.lookupvar "php_version" %>
+  FastCgiExternalServer /opt/boxen/phpenv/versions/<%= scope.lookupvar "php_version" %>/sbin/php-fpm -socket /opt/boxen/data/project-sockets/<%= scope.lookupvar "php_version" %> -idle-timeout <%= scope.lookupvar "idle_timeout" %>
 
   <Directory /opt/boxen/phpenv/versions/<%= scope.lookupvar "php_version" %>/sbin>
     Options ExecCGI FollowSymlinks
