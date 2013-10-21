@@ -105,15 +105,11 @@ define apache_php::project(
       require => Repository[$repo_dir],
     }
 
-    apache_php::fastcgi_handler { $php:
-      php_version => $php
-    }
-
     # Vhost with 5.4.11
-    apache_php::vhost { $project_name:
+    apache_php::vhost { $name:
       port => 10080,
       php_version => $php,
-      docroot => "${project_dir}/public",
+      docroot => $docroot,
     }
   }
 
