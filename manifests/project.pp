@@ -110,6 +110,7 @@ define apache_php::project(
       port => 10080,
       php_version => $php,
       docroot => $docroot,
+      host => $host,
     }
   }
 
