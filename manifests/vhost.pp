@@ -33,6 +33,7 @@ define apache_php::vhost (
 
   file { "${apache::config::sitesdir}/${name}.conf":
     require => File[$apache::config::sitesdir],
-    content => template('apache_php/config/vhost_php.conf.erb')
+    content => template('apache_php/config/vhost_php.conf.erb'),
+    notify  => Service['org.apache.httpd'],
   }
 }
